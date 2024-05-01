@@ -139,7 +139,8 @@
             }else if($_GET["error"] == "usernametaken"){
                 echo "<p  style = 'margin-left: 33%; margin-top: 10%;'> Username already taken!";
             }else if($_GET["error"] == "none"){
-                echo "<p style = 'margin-left: 33%; margin-top: 10%;'> You have signed up!";
+                echo "<p style = 'margin-left: 28%; margin-top: 8%;'> You have signed up!";
+                echo "<p style = 'margin-left: 38%; margin-top: 6%;'> <a href='http://localhost:3000/Koda/login.php'>Log in here</a>";
             }
         }
     ?>
