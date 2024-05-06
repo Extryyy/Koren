@@ -1,6 +1,6 @@
-<!-- about.html -->
-<!DOCTYPE html>
-<html lang="en">
+<?php
+include_once 'header.php';
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,22 +72,7 @@
     </style>
 </head>
 <body>
-<header>
-        <h1 class = "naslov">TechGadgets</h1>
-        <nav>
-            <ul>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="products.php">Products</a></li>
-                <li><a href="about.php">About Us</a></li>
-                <li><a href="contact.php">Contact</a></li>
-                <li><a href="login.php">Login</a></li>
-                <li><a href="register.php">Registracija</a></li>
 
-
-
-            </ul>
-        </nav>
-    </header>
     <main>
         <section class="about">
             <h2>About TechGadgets</h2>
@@ -96,8 +81,8 @@
         </section>
     </main>
 
-    <footer>
-        <p>© 2024 TechGadgets. All rights reserved.</p>
-    </footer>
+    <?php
+include_once 'footer.php';
+?>
 </body>
 </html>

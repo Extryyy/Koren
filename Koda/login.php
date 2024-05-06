@@ -1,34 +1,29 @@
-<!-- login.html -->
-<!DOCTYPE html>
-<html lang="sl">
+<?php
+include_once 'header.php';
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prijava - TechGadgets</title>
     <style>
+        /* Resetiranje privzetih oblikovanj */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1rem;
-        }
+
+        /* Oblikovanje obrazca za prijavo */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
         }
 
         .login-form {
             max-width: 400px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #fff;
+            border: 1px solid #ddd;
             border-radius: 5px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
 
         .login-form h2 {
@@ -39,7 +34,6 @@
         .login-form label {
             display: block;
             margin-bottom: 10px;
-            font-weight: bold;
         }
 
         .login-form input[type="text"],
@@ -57,25 +51,25 @@
             border: none;
             padding: 10px 20px;
             cursor: pointer;
-            width: 100%;
+        }
+               /* Reset default margin and padding */
+               * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .login-form button:hover {
-            background-color: #0056b3;
-        }
-
-        .login-form p {
-            text-align: center;
-            margin-top: 10px;
-        }
+        /* Header styles */
         header {
             background-color: #333;
             color: #fff;
             padding: 1rem;
             text-align: center;
         }
-        
-       
+
+        h1 {
+            font-size: 2rem;
+        }
 
         nav ul {
             list-style: none;
@@ -91,44 +85,52 @@
             text-decoration: none;
         }
 
+        /* Main content styles */
         main {
             padding: 2rem;
         }
+
+        .featured-products {
+            /* Add specific styles for featured products section */
+        }
+
+        .cta {
+            /* Add specific styles for call-to-action section */
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
     </style>
-</head>
-<body>
-<header>
-        <h1 class = "naslov">TechGadgets</h1>
-        <nav>
-            <ul>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="products.php">Products</a></li>
-                <li><a href="about.php">About Us</a></li>
-                <li><a href="contact.php">Contact</a></li>
-                <li><a href="login.php">Login</a></li>
-                <li><a href="register.php">Registracija</a></li>
-
-
-
-            </ul>
-        </nav>
-    </header>
-    <div class="login-form">
+   
+   <div class="login-form">
         <h2>Prijava</h2>
-        <form action="login.php" method="post">
+        <form action="/includes/login.inc.php" method="post">
             <label for="username">Uporabniško ime:</label>
-            <input type="text" id="username" name="name" placeholder="mail/username">
+            <input type="text" id="username" name="uid" placeholder="mail/username">
 
             <label for="password">Geslo:</label>
             <input type="password" id="password" name="pwd">
 
             <button type="submit" name = "submit">Prijava</button>
 
-            <p>Še nimate računa? <a href="register.html">Registrirajte se</a></p>
         </form>
     </div>
-    <footer>
-        <p>© 2024 TechGadgets. All rights reserved.</p>
-    </footer>
+    <?php
+        if(isset($_GET["error"])){
+            if($_GET["error"] == "emptyfields"){
+                echo "<p style = 'margin-left: 33%; margin-top: 10%;'>Fill in all fields!";
+            }else if($_GET["error"] == "wronglogin"){
+                echo "<p  style = 'margin-left: 33%; margin-top: 10%;'>Incorrect login information!";
+            }
+        }
+    ?>
+   <?php
+include_once 'footer.php';
+?>
 </body>
 </html>

@@ -1,4 +1,6 @@
-<!-- register.html -->
+<?php
+include_once 'header.php';
+?>
 <!DOCTYPE html>
 <html lang="sl">
 <head>
@@ -6,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registracija - TechGadgets</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-   <style>
+    <style>
+    
         * {
             margin: 0;
             padding: 0;
@@ -88,24 +91,10 @@
         }
        
     </style>
+   
 </head>
 <body>
-<header>
-        <h1 class = "naslov">TechGadgets</h1>
-        <nav>
-            <ul>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="products.php">Products</a></li>
-                <li><a href="about.php">About Us</a></li>
-                <li><a href="contact.php">Contact</a></li>
-                <li><a href="login.php">Login</a></li>
-                <li><a href="register.php">Register</a></li>
 
-
-
-            </ul>
-        </nav>
-    </header>
     <div id="intro" class="bg-image shadow-2-strong">
     <div class="register-form">
         <h2>Registration</h2>
@@ -147,8 +136,8 @@
     </div>
     </div>
 
-    <footer>
-        <p>© 2024 TechGadgets. All rights reserved.</p>
-    </footer>
+    <?php
+include_once 'footer.php';
+?>
 </body>
 </html>
