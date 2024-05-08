@@ -96,23 +96,25 @@ function createUser($conn, $name, $email, $username, $pwd){
         function loginUser($conn, $username, $pwd)
         {
             $uidExists = uidExists($conn, $username, $username);
-
-            if($uidExists === false){
+        
+            if ($uidExists === false) {
                 header("location: ../Koda/login.php?error=wronglogin");
                 exit();
             }
             $pwdHashed = $uidExists["usersPwd"];
             $checkPwd = password_verify($pwd, $pwdHashed);
-            if($checkPwd === false){
+            if ($checkPwd === false) {
                 header("location: ../Koda/login.php?error=wronglogin");
                 exit();
-            }else if($checkPwd === true){
+            } else if ($checkPwd === true) {
                 session_start();
                 $_SESSION["userid"] = $uidExists["usersId"];
                 $_SESSION["useruid"] = $uidExists["usersUid"];
+                $_SESSION["name"] = $uidExists["usersName"];  // Store the user's name in the session
+        
                 header("location: ../Koda/index.php");
                 exit();
             }
         }
-
+        
 

@@ -59,12 +59,20 @@ include_once 'header.php';
             box-sizing: border-box;
         }
 
+              /* Reset default margin and padding */
+              * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         /* Header styles */
         header {
             background-color: #333;
             color: #fff;
             padding: 1rem;
             text-align: center;
+            font-family: Arial, sans-serif;
         }
 
         h1 {
@@ -73,16 +81,18 @@ include_once 'header.php';
 
         nav ul {
             list-style: none;
+            padding: 0;
         }
 
         nav ul li {
-            display: inline-block;
-            margin-right: 1rem;
+            display: inline;
+            margin-right: 20px;
         }
 
         nav ul li a {
             color: #fff;
             text-decoration: none;
+            font-weight: bold;
         }
 
         /* Main content styles */
@@ -123,9 +133,9 @@ include_once 'header.php';
     <?php
         if(isset($_GET["error"])){
             if($_GET["error"] == "emptyfields"){
-                echo "<p style = 'margin-left: 33%; margin-top: 10%;'>Fill in all fields!";
+                echo "<p style = 'margin-left: 47%; margin-top: 3%;'>Fill in all fields!";
             }else if($_GET["error"] == "wronglogin"){
-                echo "<p  style = 'margin-left: 33%; margin-top: 10%;'>Incorrect login information!";
+                echo "<p  style = 'margin-left: 44%; margin-top: 3%;'>Incorrect login information!";
             }
         }
     ?>

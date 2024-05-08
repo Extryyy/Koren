@@ -10,14 +10,40 @@ include_once 'header.php';
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <style>
     
-        * {
+              /* Reset default margin and padding */
+              * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
+        /* Header styles */
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
             font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
         }
         footer {
             background-color: #333;
@@ -60,32 +86,10 @@ include_once 'header.php';
             margin-left: 38%;
             
         }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 1rem;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 2rem;
-        }
-
-        nav ul {
-            list-style: none;
-        }
-
-        nav ul li {
-            display: inline-block;
-            margin-right: 1rem;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-        }
+     
+   
         #intro{
-            background-image: url("/Slike/BG-Register.webp");
+            background-image: url("");
       height: 100vh;
       padding-top: 200px;
         }

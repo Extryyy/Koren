@@ -33,12 +33,20 @@ include_once 'header.php';
             line-height: 1.5;
         }
         
+               /* Reset default margin and padding */
+               * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         /* Header styles */
         header {
             background-color: #333;
             color: #fff;
             padding: 1rem;
             text-align: center;
+            font-family: Arial, sans-serif;
         }
 
         h1 {
@@ -47,16 +55,18 @@ include_once 'header.php';
 
         nav ul {
             list-style: none;
+            padding: 0;
         }
 
         nav ul li {
-            display: inline-block;
-            margin-right: 1rem;
+            display: inline;
+            margin-right: 20px;
         }
 
         nav ul li a {
             color: #fff;
             text-decoration: none;
+            font-weight: bold;
         }
           /* Footer styles */
           footer {

@@ -47,9 +47,12 @@ if (isset($_SESSION["useruid"])) {
             <li><a href="contact.php">Contact</a></li>
             
             <?php
-            if(isset($_SESSION["useruid"])){
-                echo "<li><a href='profile.php'>Profile Page</a></li>
-                <li><a href='/includes/logout.inc.php'>Log Out</a></li>";
+            // Check if the logged-in user is "Extry" and display additional links
+            if (isset($_SESSION["useruid"]) && $_SESSION["useruid"] == "Extry") {
+                echo "<li><a href='/Koda/admin_insert.php'>Add Product</a></li>"; // Assuming you have add_product.php
+                echo "<li><a href='/includes/logout.inc.php'>Log Out</a></li>";
+            } elseif (isset($_SESSION["useruid"])) {
+                echo "<li><a href='/includes/logout.inc.php'>Log Out</a></li>";
             } else {
                 echo "<li><a href='login.php'>Login</a></li>";
                 echo "<li><a href='register.php'>Registration</a></li>";
