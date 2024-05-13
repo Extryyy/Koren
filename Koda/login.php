@@ -12,7 +12,6 @@ include_once 'header.php';
             padding: 0;
             box-sizing: border-box;
         }
-
         /* Oblikovanje obrazca za prijavo */
         body {
             font-family: Arial, sans-serif;
@@ -115,8 +114,13 @@ include_once 'header.php';
             text-align: center;
             padding: 1rem;
         }
+        main {
+    padding: 20px;
+    background-color: #f4f4f4;
+    overflow: auto; /* Ensures the container extends with the floating elements */
+}
     </style>
-   
+   <main>
    <div class="login-form">
         <h2>Prijava</h2>
         <form action="/includes/login.inc.php" method="post">
@@ -133,14 +137,15 @@ include_once 'header.php';
     <?php
         if(isset($_GET["error"])){
             if($_GET["error"] == "emptyfields"){
-                echo "<p style = 'margin-left: 47%; margin-top: 3%;'>Fill in all fields!";
+                echo "<p style = 'margin-left: 33%; margin-top: 10%;'>Fill in all fields!";
             }else if($_GET["error"] == "wronglogin"){
-                echo "<p  style = 'margin-left: 44%; margin-top: 3%;'>Incorrect login information!";
+                echo "<p  style = 'margin-left: 33%; margin-top: 10%;'>Incorrect login information!";
             }
         }
     ?>
    <?php
 include_once 'footer.php';
 ?>
+</main>
 </body>
 </html>

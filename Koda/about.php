@@ -15,8 +15,10 @@ include_once 'header.php';
 
         /* Main content styles */
         main {
-            padding: 2rem;
-        }
+    padding: 20px;
+    background-color: #f4f4f4;
+    overflow: auto; /* Ensures the container extends with the floating elements */
+}
 
         .about {
             text-align: center;
@@ -89,10 +91,12 @@ include_once 'header.php';
             <p>We are passionate about providing high-quality computers to tech enthusiasts worldwide. Our team of experts ensures that every product meets the highest standards of performance and reliability.</p>
             <!-- Add more content about your company -->
         </section>
-    </main>
+    
+
 
     <?php
 include_once 'footer.php';
 ?>
+</main>
 </body>
 </html>

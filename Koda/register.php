@@ -25,7 +25,11 @@ include_once 'header.php';
             text-align: center;
             font-family: Arial, sans-serif;
         }
-
+        main {
+    padding: 20px;
+    background-color: #f4f4f4;
+    overflow: auto; /* Ensures the container extends with the floating elements */
+}
         h1 {
             font-size: 2rem;
         }
@@ -98,7 +102,7 @@ include_once 'header.php';
    
 </head>
 <body>
-
+<main>
     <div id="intro" class="bg-image shadow-2-strong">
     <div class="register-form">
         <h2>Registration</h2>
@@ -143,5 +147,6 @@ include_once 'header.php';
     <?php
 include_once 'footer.php';
 ?>
+</main>
 </body>
 </html>

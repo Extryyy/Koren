@@ -20,7 +20,11 @@ include_once 'header.php';
             height: 100%;
             width: 100%;
         }
-
+        main {
+    padding: 20px;
+    background-color: #f4f4f4;
+    overflow: auto; /* Ensures the container extends with the floating elements */
+}
         /* Header styles */
         header {
             background-color: #333;
@@ -80,9 +84,10 @@ include_once 'header.php';
 
 <main>
     <!-- Main content -->
-</main>
+
 <?php
 include_once 'footer.php';
 ?>
+</main>
 </body>
 </html>

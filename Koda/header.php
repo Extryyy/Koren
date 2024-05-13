@@ -35,6 +35,18 @@ if (isset($_SESSION["useruid"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <style>
+        .user{
+            font-weight: bold;
+            left: 80%;
+           position: absolute;
+        }
+        .imagen{
+            left: 83%;
+           position: absolute;
+            bottom: 92%;
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -51,8 +63,11 @@ if (isset($_SESSION["useruid"])) {
             if (isset($_SESSION["useruid"]) && $_SESSION["useruid"] == "Extry") {
                 echo "<li><a href='/Koda/admin_insert.php'>Add Product</a></li>"; // Assuming you have add_product.php
                 echo "<li><a href='/includes/logout.inc.php'>Log Out</a></li>";
+                echo "<li class='user'>" . htmlspecialchars($_SESSION["useruid"]) . "</li> <img src = 'https://th.bing.com/th/id/OIP.xBG38EXAjPmXq81y-sFqRAAAAA?rs=1&pid=ImgDetMain' width = '30px' height = '30px' class = 'imagen'>";
+
             } elseif (isset($_SESSION["useruid"])) {
                 echo "<li><a href='/includes/logout.inc.php'>Log Out</a></li>";
+                echo "<li class='user'>" . htmlspecialchars($_SESSION["useruid"]) . "</li> <img src = 'https://th.bing.com/th/id/OIP.xBG38EXAjPmXq81y-sFqRAAAAA?rs=1&pid=ImgDetMain' width = '30px' height = '30px' class = 'imagen'>";
             } else {
                 echo "<li><a href='login.php'>Login</a></li>";
                 echo "<li><a href='register.php'>Registration</a></li>";
