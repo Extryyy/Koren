@@ -8,23 +8,43 @@ include_once 'header.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechGadgets</title>
     <style>
-        /* Reset default margin and padding */
-        * {
+         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        /* Reset default margin and padding (similar to other pages) */
 
-        /* Ensuring the full height of the page is covered */
-        html, body {
-            height: 100%;
-            width: 100%;
-        }
+        /* Main content styles */
         main {
     padding: 20px;
     background-color: #f4f4f4;
     overflow: auto; /* Ensures the container extends with the floating elements */
 }
+
+        .about {
+            text-align: center;
+        }
+
+        /* Add specific styles for your about content */
+        .about h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .about p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        
+              /* Reset default margin and padding */
+              * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         /* Header styles */
         header {
             background-color: #333;
@@ -41,7 +61,6 @@ include_once 'header.php';
         nav ul {
             list-style: none;
             padding: 0;
-            margin: 0;
         }
 
         nav ul li {
@@ -54,30 +73,16 @@ include_once 'header.php';
             text-decoration: none;
             font-weight: bold;
         }
-
-        /* Fullscreen background image setup */
-        body {
-            background-image: url("");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        /* Main content styles */
-        main {
-            position: relative; /* Allows content to be properly layered on the background */
-            min-height: 100%; /* Ensures the main content area is at least as tall as the viewport */
-            padding: 2rem;
-            box-sizing: border-box; /* Includes padding in height calculation */
-        }
-
-        /* Footer styles */
-        footer {
+          /* Footer styles */
+          footer {
             background-color: #333;
             color: #fff;
             text-align: center;
             padding: 1rem;
         }
+
+
+        /* Footer styles (similar to other pages) */
     </style>
 </head>
 <body>
@@ -85,9 +90,10 @@ include_once 'header.php';
 <main>
     <!-- Main content -->
 
+
+</main>
 <?php
 include_once 'footer.php';
 ?>
-</main>
 </body>
 </html>

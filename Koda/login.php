@@ -119,6 +119,7 @@ include_once 'header.php';
     background-color: #f4f4f4;
     overflow: auto; /* Ensures the container extends with the floating elements */
 }
+
     </style>
    <main>
    <div class="login-form">
@@ -143,9 +144,10 @@ include_once 'header.php';
             }
         }
     ?>
-   <?php
+
+</main>
+<?php
 include_once 'footer.php';
 ?>
-</main>
 </body>
 </html>
