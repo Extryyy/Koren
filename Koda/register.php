@@ -134,18 +134,25 @@ include_once 'header.php';
             <?php
             if(isset($_GET["error"])){
                 if($_GET["error"] == "emptyfields"){
+                    echo "<br>";
                     echo "<p style='text-align: center; color: red;'>Fill in all fields!</p>";
                 }else if($_GET["error"] == "invaliduid"){
+                    echo "<br>";
                     echo "<p style='text-align: center; color: red;'>Choose a proper username!</p>";
                 }else if($_GET["error"] == "invalidemail"){
+                    echo "<br>";
                     echo "<p style='text-align: center; color: red;'>Choose a proper email!</p>";
                 }else if($_GET["error"] == "passwordsdontmatch"){
+                    echo "<br>";
                     echo "<p style='text-align: center; color: red;'>Passwords don't match!</p>";
                 }else if($_GET["error"] == "stmtfailed"){
+                    echo "<br>";
                     echo "<p style='text-align: center; color: red;'>Something went wrong, try again!</p>";
                 }else if($_GET["error"] == "usernametaken"){
+                    echo "<br>";
                     echo "<p style='text-align: center; color: red;'>Username already taken!</p>";
                 }else if($_GET["error"] == "none"){
+                    echo "<br>";
                     echo "<p style='text-align: center; color: green;'>You have signed up!</p>";
                     echo "<p style='text-align: center;'><a href='http://localhost:3000/Koda/login.php'>Log in here</a></p>";
                 }

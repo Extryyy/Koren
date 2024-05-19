@@ -60,6 +60,7 @@
             align-items: center;
             padding: 2rem;
             background-color: rgba(0, 0, 0, 0.5); /* Adding a semi-transparent overlay */
+            position: relative;
         }
 
         .login-form {
@@ -99,6 +100,16 @@
             border-radius: 3px;
         }
 
+        .error-message {
+            color: red;
+            text-align: left;
+            margin-top: 20%;
+            position: absolute;
+            left: 10px; /* Adjust this value to move the message further to the left */
+            width: 100%;
+            margin-left: 47%;
+        }
+
         /* Footer styles */
         footer {
             background-color: rgba(0, 0, 0, 0.7);
@@ -107,10 +118,18 @@
             padding: 1rem;
             width: 100%;
         }
+        .error-message2{
+            color: red;
+            text-align: left;
+            margin-top: 20%;
+            position: absolute;
+            left: 10px; /* Adjust this value to move the message further to the left */
+            width: 100%;
+            margin-left: 44%;
+        }
     </style>
 </head>
 <body>
-   
     <main>
         <div class="login-form">
             <h2>Log In</h2>
@@ -118,7 +137,7 @@
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="uid" placeholder="mail/username">
 
-                <label for="password">Passowrd:</label>
+                <label for="password">Password:</label>
                 <input type="password" id="password" name="pwd">
 
                 <button type="submit" name="submit">Prijava</button>
@@ -127,9 +146,9 @@
         <?php
             if(isset($_GET["error"])){
                 if($_GET["error"] == "emptyfields"){
-                    echo "<p style='text-align: center; margin-top: 20px; color: red;'>Fill in all fields!</p>";
+                    echo "<p class='error-message';>Fill in all fields!</p>";
                 }else if($_GET["error"] == "wronglogin"){
-                    echo "<p style='text-align: center; margin-top: 20px; color: red;'>Incorrect login information!</p>";
+                    echo "<p class='error-message2'>Incorrect login information!</p>";
                 }
             }
         ?>
