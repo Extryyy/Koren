@@ -12,11 +12,14 @@
             box-sizing: border-box;
         }
         header {
-            background-color: #333;
+            background-color: rgba(0, 0, 0, 0.7);
             color: #fff;
             padding: 1rem;
             text-align: center;
-            font-family: Arial, sans-serif;
+            position: absolute;
+            width: 100%;
+            z-index: 2;
+            
         }
         nav ul {
             list-style: none;
@@ -35,6 +38,7 @@
             padding: 20px;
             background-color: #f4f4f4;
             overflow: auto;
+            background-image: url('https://static.vecteezy.com/system/resources/previews/000/522/943/original/abstract-technology-background-with-the-hi-tech-futuristic-concept-cyber-technology-innovation-background-vector-illustration.jpg');
         }
         .card {
             display: inline-block;
@@ -45,7 +49,6 @@
             border-radius: 8px;
             overflow: hidden;
         }
-    
         .card img {
             width: 100%;
             height: 200px;
@@ -85,12 +88,14 @@
             background-color: #0056b3;
         }
         footer {
-            background-color: #333;
+            background-color: rgba(0, 0, 0, 0.7);
             color: #fff;
             text-align: center;
             padding: 1rem;
-            clear: both;
-            margin-bottom: 50px;
+            width: 100%;
+            bottom: 0;
+            z-index: 2;
+            position: absolute;
         }
         .filter {
             position: fixed;
@@ -143,14 +148,47 @@
         .filter input[type="submit"]:hover {
             background-color: #0056b3;
         }
+        .search-bar {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .search-bar input[type="text"] {
+            margin-top: 4%;
+            width: 50%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #007BFF;
+            border-radius: 4px;
+        }
+        .search-bar button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .search-bar button:hover {
+            background-color: #0056b3;
+        }
+        
     </style>
 </head>
 <body>
     <main>
         <section id="products">
+            <div class="search-bar">
+                <form method="get">
+                    <input type="text" name="search" placeholder="Search for products...">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
             <h2 class="products">Products:</h2>
             <?php
             include_once '../includes/dbh.inc.php';
+            $search = $_GET['search'] ?? '';
             $minPrice = $_GET['minPrice'] ?? '';
             $maxPrice = $_GET['maxPrice'] ?? '';
             $brand = $_GET['brand'] ?? '';
@@ -161,6 +199,11 @@
             $params = [];
             $types = '';
 
+            if (!empty($search)) {
+                $sql .= " AND name LIKE ?";
+                $params[] = '%' . $search . '%';
+                $types .= 's';
+            }
             if (!empty($minPrice)) {
                 $sql .= " AND price >= ?";
                 $params[] = $minPrice;
@@ -201,7 +244,9 @@
                 echo "<img src='" . htmlspecialchars($row['image_url']) . "' alt='Product Image'>";
                 echo "<div class='card-content'>";
                 echo "<h3 class='card-title'>" . htmlspecialchars($row['name']) . "</h3>";
-                echo "<p class='card-text'>" . htmlspecialchars($row['description']) . "</p>";
+                echo "<p class='card-text'> Brand: " . htmlspecialchars($row['brand']) . "</p>";
+                echo "<p class='card-text'> Category: " . htmlspecialchars($row['category']) . "</p>";
+                echo "<p class='card-text'> Description: " . htmlspecialchars($row['description']) . "</p>";
                 echo "<p class='price'>Price: $" . number_format($row['price'], 2) . "</p>";
                 echo "<button onclick=\"window.location.href='product_details.php?product_id=" . $row['product_id'] . "'\">Check it out</button>";
                 echo "<br><br>";
@@ -254,7 +299,8 @@
                 <input type="submit" value="Filter">
             </form>
         </div>
+        <?php include_once 'footer.php'; ?>
     </main>
-    <?php include_once 'footer.php'; ?>
+    
 </body>
 </html>

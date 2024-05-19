@@ -49,7 +49,7 @@ if (isset($_SESSION["useruid"])) {
             color: #fff;
             padding: 1rem;
             text-align: center;
-            position: relative;
+            position: sticky;
         }
 
         nav ul {
@@ -119,8 +119,7 @@ if (isset($_SESSION["useruid"])) {
     <ul>
         <li><a href="index.php">Home</a></li>
         <li><a href="products.php">Products</a></li>
-        <li><a href="about.php">About Us</a></li>
-        <li><a href="contact.php">Contact</a></li>
+        <li><a href="about.php">About us</a></li>
 
         <?php if (isset($_SESSION["useruid"])): ?>
             <!-- Check if the logged-in user is 'Extry', then display the 'Add Product' option -->

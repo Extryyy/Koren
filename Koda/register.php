@@ -9,27 +9,33 @@ include_once 'header.php';
     <title>Registracija - TechGadgets</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <style>
-    
-              /* Reset default margin and padding */
-              * {
+        /* Reset default margin and padding */
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* Body styles with background image */
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://th.bing.com/th/id/R.37670159cb7a433f574a02d27b940aee?rik=qXqwN5T3MhInWQ&riu=http%3a%2f%2fres-3.cloudinary.com%2ffieldfisher%2fimage%2fupload%2ff_jpg%2cq_auto%2fv1%2fsectors%2ftechnology%2ftech_neoncircuitboard_857021704_medium_lc5h05&ehk=nISAWBDhFyyZ%2bAydAC2uE2%2bcZiYyVp5BvMgXY5JCFFk%3d&risl=&pid=ImgRaw&r=0') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
         /* Header styles */
         header {
-            background-color: #333;
+            background-color: rgba(0, 0, 0, 0.7);
             color: #fff;
             padding: 1rem;
             text-align: center;
             font-family: Arial, sans-serif;
+            width: 100%;
         }
-        main {
-    padding: 20px;
-    background-color: #f4f4f4;
-    overflow: auto; /* Ensures the container extends with the floating elements */
-}
+
         h1 {
             font-size: 2rem;
         }
@@ -49,16 +55,22 @@ include_once 'header.php';
             text-decoration: none;
             font-weight: bold;
         }
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1rem;
+
+        /* Main content styles */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
         }
+
         .register-form {
             max-width: 400px;
-            margin: 0 auto;
+            width: 100%;
             padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+            border-radius: 5px;
         }
 
         .register-form h2 {
@@ -87,66 +99,60 @@ include_once 'header.php';
             border: none;
             padding: 10px 20px;
             cursor: pointer;
-            margin-left: 38%;
-            
+            width: 100%;
+            border-radius: 3px;
         }
-     
-   
-        #intro{
-            background-image: url("");
-      height: 100vh;
-      padding-top: 200px;
+
+        /* Footer styles */
+        footer {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            width: 100%;
         }
-       
     </style>
-   
 </head>
 <body>
-<main>
-    <div id="intro" class="bg-image shadow-2-strong">
-    <div class="register-form">
-        <h2>Registration</h2>
-        <form action="/includes/signup.inc.php" method="post">
-            <label for="FullN">Full Name:</label>
-            <input type="text" id="FullN" name="name">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="uid">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="pwd">
-            <label for="pwdr">Password Repeat:</label>
-            <input type="password" id="pwdr" name="pwdrepeat">
-            <label for="email">E-Mail:</label>
-            <input type="text" id="email" name="email">
-
-
-            <button type="submit" name = "submit">Sign Up</button>
-        </form>
-        <?php
-        if(isset($_GET["error"])){
-            if($_GET["error"] == "emptyfields"){
-                echo "<p style = 'margin-left: 33%; margin-top: 10%;'>Fill in all fields!";
-            }else if($_GET["error"] == "invaliduid"){
-                echo "<p  style = 'margin-left: 33%; margin-top: 10%;'> Choose a proper username!";
-            }else if($_GET["error"] == "invalidemail"){
-                echo "<p  style = 'margin-left: 33%; margin-top: 10%;'> Choose a proper email!";
-            }else if($_GET["error"] == "passwordsdontmatch"){
-                echo "<p  style = 'margin-left: 33%; margin-top: 10%;'> Passwords don't match!";
-            }else if($_GET["error"] == "stmtfailed"){
-                echo "<p  style = 'margin-left: 33%; margin-top: 10%;'> Something went wrong, try again!";
-            }else if($_GET["error"] == "usernametaken"){
-                echo "<p  style = 'margin-left: 33%; margin-top: 10%;'> Username already taken!";
-            }else if($_GET["error"] == "none"){
-                echo "<p style = 'margin-left: 28%; margin-top: 8%;'> You have signed up!";
-                echo "<p style = 'margin-left: 38%; margin-top: 6%;'> <a href='http://localhost:3000/Koda/login.php'>Log in here</a>";
+    <?php include_once 'header.php'; ?>
+    <main>
+        <div class="register-form">
+            <h2>Registration</h2>
+            <form action="/includes/signup.inc.php" method="post">
+                <label for="FullN">Full Name:</label>
+                <input type="text" id="FullN" name="name">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="uid">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="pwd">
+                <label for="pwdr">Password Repeat:</label>
+                <input type="password" id="pwdr" name="pwdrepeat">
+                <label for="email">E-Mail:</label>
+                <input type="text" id="email" name="email">
+                <button type="submit" name="submit">Sign Up</button>
+            </form>
+            <?php
+            if(isset($_GET["error"])){
+                if($_GET["error"] == "emptyfields"){
+                    echo "<p style='text-align: center; color: red;'>Fill in all fields!</p>";
+                }else if($_GET["error"] == "invaliduid"){
+                    echo "<p style='text-align: center; color: red;'>Choose a proper username!</p>";
+                }else if($_GET["error"] == "invalidemail"){
+                    echo "<p style='text-align: center; color: red;'>Choose a proper email!</p>";
+                }else if($_GET["error"] == "passwordsdontmatch"){
+                    echo "<p style='text-align: center; color: red;'>Passwords don't match!</p>";
+                }else if($_GET["error"] == "stmtfailed"){
+                    echo "<p style='text-align: center; color: red;'>Something went wrong, try again!</p>";
+                }else if($_GET["error"] == "usernametaken"){
+                    echo "<p style='text-align: center; color: red;'>Username already taken!</p>";
+                }else if($_GET["error"] == "none"){
+                    echo "<p style='text-align: center; color: green;'>You have signed up!</p>";
+                    echo "<p style='text-align: center;'><a href='http://localhost:3000/Koda/login.php'>Log in here</a></p>";
+                }
             }
-        }
-    ?>
-    </div>
-    </div>
-
-    <?php
-include_once 'footer.php';
-?>
-</main>
+            ?>
+        </div>
+    </main>
+    <?php include_once 'footer.php'; ?>
 </body>
 </html>

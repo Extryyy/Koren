@@ -1,7 +1,4 @@
-<?php
-include_once 'header.php';
-include_once '../includes/dbh.inc.php'; // Adjust the path as necessary to include your database connection
-?>
+<?php include_once 'header.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,25 +12,35 @@ include_once '../includes/dbh.inc.php'; // Adjust the path as necessary to inclu
             padding: 0;
             box-sizing: border-box;
         }
-        body {
+        html, body {
+            height: 100%;
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
+            color: #333;
+            background-image: url('https://th.bing.com/th/id/R.16c539e675adb17f41ac8b7b005d59f3?rik=jqLuWCPxbCAkiA&pid=ImgRaw&r=0');
+            background-size: cover;
+            background-position: center;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
         }
         header {
-            background-color: #333;
+            background-color: rgba(0, 0, 0, 0.7);
             color: #fff;
             padding: 1rem;
             text-align: center;
-            font-family: Arial, sans-serif;
+            width: 100%;
+            z-index: 2;
         }
         main {
+            flex: 1;
             padding: 20px;
             width: 80%;
             margin: 20px auto;
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1;
         }
         table {
             width: 100%;
@@ -73,24 +80,30 @@ include_once '../includes/dbh.inc.php'; // Adjust the path as necessary to inclu
             cursor: pointer;
             float: right;
             margin: 20px 0;
+            margin-right: 44%;
         }
         .checkout-button:hover {
             background-color: #0056b3;
         }
         footer {
-            background-color: #333;
+            background-color: rgba(0, 0, 0, 0.7);
             color: #fff;
             text-align: center;
             padding: 1rem;
-            clear: both;
-            margin-top: 50px;
+            width: 100%;
+            z-index: 2;
         }
     </style>
 </head>
 <body>
+
+<header>
+    <!-- Header content goes here -->
+</header>
 <main>
     <h2>Your Shopping Cart</h2>
     <?php
+    include_once '../includes/dbh.inc.php';
     if (!empty($_SESSION['cart'])) {
         echo "<table>";
         echo "<tr><th>Product</th><th>Quantity</th><th>Unit Price</th><th>Total Price</th><th>Action</th></tr>";
@@ -124,5 +137,6 @@ include_once '../includes/dbh.inc.php'; // Adjust the path as necessary to inclu
     ?>
 </main>
 <?php include_once 'footer.php'; ?>
+
 </body>
 </html>

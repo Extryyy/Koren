@@ -1,6 +1,5 @@
-<?php
-include_once 'header.php';
-?>
+<?php include_once 'header.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +7,6 @@ include_once 'header.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add New Product</title>
     <style>
-       
         /* Reset default margin and padding */
         * {
             margin: 0;
@@ -16,21 +14,35 @@ include_once 'header.php';
             box-sizing: border-box;
         }
 
+        /* Fullscreen background image */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://static.vecteezy.com/system/resources/previews/000/533/557/original/abstract-black-technology-lines-art-background-and-space-vector.jpg'); /* Replace 'your_background_image.jpg' with the URL of your background image */
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Set the height of the body to 100% of the viewport height */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            color: white;
+        }
+
         /* Header styles */
         header {
-            background-color: #333;
+            background-color: rgba(0, 0, 0, 0.7);
             color: #fff;
             padding: 1rem;
             text-align: center;
+            width: 100%;
+            z-index: 2;
         }
 
         h1 {
             font-size: 2rem;
-           
         }
+
         .naslov {
             align-content: center;
-           
+            font-weight: bold;
         }
 
         nav ul {
@@ -52,31 +64,25 @@ include_once 'header.php';
             padding: 2rem;
         }
 
-        .featured-products {
-            /* Add specific styles for featured products section */
-        }
-
-        .cta {
-            /* Add specific styles for call-to-action section */
-        }
-
         /* Footer styles */
         footer {
-            background-color: #333;
+            background-color: rgba(0, 0, 0, 0.7);
             color: #fff;
             text-align: center;
             padding: 1rem;
+            width: 100%;
+            z-index: 2;
         }
-        form{
+        form {
             margin: 1% 0 0 40%;
+            font-weight: bold;
         }
         
-  
-
     </style>
 </head>
 <body>
-    <h1 class = "naslov">Add New Product</h1>
+    
+    <h1 class="naslov">Add New Product</h1>
     <form action="/includes/insert_product.php" method="post" enctype="multipart/form-data">
         <label for="name">Product Name:</label>
         <input type="text" id="name" name="name" required><br><br>
@@ -90,17 +96,17 @@ include_once 'header.php';
         
         <label for="category">Choose a proper category:</label>
 
-<select name="category" id="category">
-  <option value="GAMING COMPUTERS">GAMING COMPUTERS</option>
-  <option value="DESKTOP COMPUTERS">DESKTOP COMPUTERS</option>
-  <option value="LAPTOPS">LAPTOPS</option>
-  <option value="PHONES">PHONES</option>
-  <option value="KEYBOARDS">KEYBOARDS</option>
-  <option value="MOUSES">MOUSES</option>
-</select>
+        <select name="category" id="category">
+          <option value="GAMING COMPUTERS">GAMING COMPUTERS</option>
+          <option value="DESKTOP COMPUTERS">DESKTOP COMPUTERS</option>
+          <option value="LAPTOPS">LAPTOPS</option>
+          <option value="PHONES">PHONES</option>
+          <option value="KEYBOARDS">KEYBOARDS</option>
+          <option value="MOUSES">MOUSES</option>
+        </select>
 
-<br><br>
-<label for="brand">Brand:</label>
+        <br><br>
+        <label for="brand">Brand:</label>
         <select id="brand" name="brand">
             <option value="APPLE">Apple</option>
             <option value="DELL">Dell</option>
@@ -123,8 +129,23 @@ include_once 'header.php';
         
         <button type="submit">Add Product</button>
     </form>
-    <?php
-include_once 'footer.php';
-?>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+    <?php include_once 'footer.php'; ?>
+
 </body>
 </html>
