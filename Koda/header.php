@@ -1,32 +1,37 @@
 <?php
-// Set the lifetime of the session to 30 minutes (1800 seconds)
-$lifetime = 1800;
-
-// Adjust session settings before starting the session
-ini_set('session.gc_maxlifetime', $lifetime);
-session_set_cookie_params([
-    'lifetime' => $lifetime,
-    'path' => '/',
-    'domain' => $_SERVER['HTTP_HOST'],
-    'secure' => isset($_SERVER['HTTPS']),
-    'httponly' => true,
-    'samesite' => 'Lax'  // Adjust based on your requirements
-]);
-
-// Now start the session
+// Start session
 session_start();
 
-// Check if the user is "logged in" and handle activity timeout
-if (isset($_SESSION["useruid"])) {
-    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $lifetime)) {
-        // Session timed out
-        session_unset();  // Unset $_SESSION variable for the run-time 
-        session_destroy();  // Destroy session data in storage
-        header("Location: login.php");  // Redirect to login page
-        exit;
+// Include database connection
+include_once '../includes/dbh.inc.php';
+
+// Initialize cart count
+$cart_count = 0;
+
+// Check if the user is logged in
+if (isset($_SESSION["userid"])) {
+    $user_id = $_SESSION["userid"];
+
+    // Get the user's cart ID
+    $cart_query = "SELECT cart_id FROM cart WHERE user_id = ?";
+    $stmt = mysqli_prepare($conn, $cart_query);
+    mysqli_stmt_bind_param($stmt, "i", $user_id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $cart_id);
+    mysqli_stmt_fetch($stmt);
+    mysqli_stmt_close($stmt);
+
+    if ($cart_id) {
+        // Get the total number of items in the cart
+        $count_query = "SELECT SUM(quantity) AS total_quantity FROM cart_items WHERE cart_id = ?";
+        $stmt = mysqli_prepare($conn, $count_query);
+        mysqli_stmt_bind_param($stmt, "i", $cart_id);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt, $total_quantity);
+        mysqli_stmt_fetch($stmt);
+        $cart_count = $total_quantity ? $total_quantity : 0;
+        mysqli_stmt_close($stmt);
     }
-    // Update last activity time stamp
-    $_SESSION['last_activity'] = time();
 }
 ?>
 
@@ -43,7 +48,6 @@ if (isset($_SESSION["useruid"])) {
             padding: 0;
             font-family: Arial, sans-serif;
         }
-
         header {
             background-color: #333;
             color: #fff;
@@ -51,56 +55,46 @@ if (isset($_SESSION["useruid"])) {
             text-align: center;
             position: sticky;
         }
-
         nav ul {
             list-style: none;
             padding: 0;
             margin: 0;
             display: inline;
         }
-
         nav ul li {
             display: inline;
             margin-right: 20px;
         }
-
         nav ul li a {
             color: #fff;
             text-decoration: none;
             font-weight: bold;
         }
-
         .user {
             position: absolute;
             right: 150px;
             top: 12px;
             font-weight: bold;
         }
-        
-
         .imagen {
             position: absolute;
             right: 75px;
             top: 10px;
             height: 50px;
         }
-
         .shopping-cart {
             position: absolute;
             right: 20px;
             top: 10px;
             color: white;
         }
-
         .shopping-cart a {
             color: #FFF;
             text-decoration: none;
         }
-
         .cart-icon {
             font-size: 24px;
         }
-
         .cart-count {
             background-color: red;
             border-radius: 50%;
@@ -120,9 +114,7 @@ if (isset($_SESSION["useruid"])) {
         <li><a href="index.php">Home</a></li>
         <li><a href="products.php">Products</a></li>
         <li><a href="about.php">About us</a></li>
-
         <?php if (isset($_SESSION["useruid"])): ?>
-            <!-- Check if the logged-in user is 'Extry', then display the 'Add Product' option -->
             <?php if ($_SESSION["useruid"] == "Extry"): ?>
                 <li><a href='/Koda/admin_insert.php'>Add Product</a></li>
             <?php endif; ?>
@@ -132,7 +124,7 @@ if (isset($_SESSION["useruid"])) {
             <div class="shopping-cart">
                 <a href="cart.php">
                     <i class="fa fa-shopping-cart cart-icon"></i>
-                    <span class="cart-count"><?= isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0 ?></span>
+                    <span class="cart-count"><?= $cart_count ?></span>
                 </a>
             </div>
         <?php else: ?>
@@ -141,7 +133,6 @@ if (isset($_SESSION["useruid"])) {
         <?php endif; ?>
     </ul>
 </nav>
-
 </header>
 </body>
 </html>

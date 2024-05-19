@@ -1,4 +1,16 @@
-<?php include_once 'header.php'; ?>
+<?php
+include_once 'header.php';
+include_once '../includes/dbh.inc.php';
+
+if (!isset($_SESSION["userid"])) {
+    header("Location: login.php");
+    exit;
+}
+
+$user_id = $_SESSION["userid"];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,34 +115,51 @@
 <main>
     <h2>Your Shopping Cart</h2>
     <?php
-    include_once '../includes/dbh.inc.php';
-    if (!empty($_SESSION['cart'])) {
-        echo "<table>";
-        echo "<tr><th>Product</th><th>Quantity</th><th>Unit Price</th><th>Total Price</th><th>Action</th></tr>";
+    // Fetch the user's cart ID
+    $cart_query = "SELECT cart_id FROM cart WHERE user_id = ?";
+    $stmt = mysqli_prepare($conn, $cart_query);
+    mysqli_stmt_bind_param($stmt, "i", $user_id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $cart_id);
+    mysqli_stmt_fetch($stmt);
+    mysqli_stmt_close($stmt);
 
-        $total = 0;
-        foreach ($_SESSION['cart'] as $product_id => $quantity) {
-            $stmt = mysqli_prepare($conn, "SELECT name, price, image_url FROM products WHERE product_id = ?");
-            mysqli_stmt_bind_param($stmt, "i", $product_id);
-            mysqli_stmt_execute($stmt);
-            $result = mysqli_stmt_get_result($stmt);
-            $product = mysqli_fetch_assoc($result);
+    if ($cart_id) {
+        // Fetch cart items
+        $cart_items_query = "
+            SELECT products.product_id, products.name, products.price, products.image_url, cart_items.quantity
+            FROM cart_items
+            JOIN products ON cart_items.product_id = products.product_id
+            WHERE cart_items.cart_id = ?
+        ";
+        $stmt = mysqli_prepare($conn, $cart_items_query);
+        mysqli_stmt_bind_param($stmt, "i", $cart_id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
 
-            if ($product) {
-                $subtotal = $product['price'] * $quantity;
+        if (mysqli_num_rows($result) > 0) {
+            echo "<table>";
+            echo "<tr><th>Product</th><th>Quantity</th><th>Unit Price</th><th>Total Price</th><th>Action</th></tr>";
+
+            $total = 0;
+            while ($product = mysqli_fetch_assoc($result)) {
+                $subtotal = $product['price'] * $product['quantity'];
                 $total += $subtotal;
                 echo "<tr>";
                 echo "<td><div class='product-img'><img src='" . htmlspecialchars($product['image_url']) . "' alt=''></div>" . htmlspecialchars($product['name']) . "</td>";
-                echo "<td>" . $quantity . "</td>";
+                echo "<td>" . $product['quantity'] . "</td>";
                 echo "<td>$" . number_format($product['price'], 2) . "</td>";
                 echo "<td>$" . number_format($subtotal, 2) . "</td>";
-                echo "<td><a href='update_cart.php?action=remove&product_id=" . $product_id . "' class='remove-link'>Remove</a></td>";
+                echo "<td><a href='update_cart.php?action=remove&product_id=" . $product['product_id'] . "' class='remove-link'>Remove</a></td>";
                 echo "</tr>";
             }
+            echo "<tr><td colspan='3' class='total'>Total</td><td>$" . number_format($total, 2) . "</td><td></td></tr>";
+            echo "</table>";
+            echo "<button class='checkout-button' onclick='window.location.href=\"checkout.php\"'>Proceed to Checkout</button>";
+        } else {
+            echo "Your cart is empty.";
         }
-        echo "<tr><td colspan='3' class='total'>Total</td><td>$" . number_format($total, 2) . "</td><td></td></tr>";
-        echo "</table>";
-        echo "<button class='checkout-button' onclick='window.location.href=\"checkout.php\"'>Proceed to Checkout</button>";
+        mysqli_stmt_close($stmt);
     } else {
         echo "Your cart is empty.";
     }
